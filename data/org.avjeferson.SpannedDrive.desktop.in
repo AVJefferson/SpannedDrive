@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Spanned Drive
+Exec=spanneddrive
+Icon=org.avjeferson.SpannedDrive
+Terminal=false
+Type=Application
+Categories=GTK;
+Keywords=drive;
+StartupNotify=true

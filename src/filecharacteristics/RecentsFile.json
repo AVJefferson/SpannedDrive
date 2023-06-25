@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "extension": ".recents",
+  "autosave": false,
+  "datatype": {
+    "recentsfileversion": {
+      "type": "str",
+      "desc": "Version of the Recents file",
+      "def": "1.0",
+      "required": true
+    },
+    "softwareversion": {
+      "type": "str",
+      "desc": "Version of the Software required to read the file",
+      "def": "1.0",
+      "required": true
+    },
+    "previous": {
+      "type": "tuple",
+      "desc": "Last Entered timestamp-value pair",
+      "def": "",
+      "required": false
+    },
+    "entries": {
+      "type": "list",
+      "desc": "List of Timestamps and value pairs",
+      "def": [],
+      "required": true
+    },
+    "creationtime": {
+      "type": "float",
+      "desc": "Time of creation of the file",
+      "def": 0.0,
+      "required": true
+    },
+    "lastopened": {
+      "type": "float",
+      "desc": "Time of last opening of the file",
+      "def": 0.0,
+      "required": true
+    },
+    "lastmodified": {
+      "type": "float",
+      "desc": "Time of last modification of the file",
+      "def": 0.0,
+      "required": true
+    }
+  }
+}

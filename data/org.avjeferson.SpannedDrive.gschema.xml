@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="spanneddrive">
+	<schema id="org.avjeferson.SpannedDrive" path="/org/avjeferson/SpannedDrive/">
+	</schema>
+</schemalist>
