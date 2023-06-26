@@ -49,6 +49,7 @@ class SpanneddriveApplication(Adw.Application):
         if not win:
             win = SpanneddriveWindow(application=self)
         win.present()
+        # win.set_keep_above(True)
 
     def on_quit_action(self, widget, _):
         quitable = True

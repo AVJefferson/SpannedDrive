@@ -27,16 +27,13 @@ from .utility import shorten, error_dialog, get_ui_path_from_filename
 class SpanneddriveWindow(Adw.ApplicationWindow):
     __gtype_name__ = "SpanneddriveWindow"
 
-    label = Gtk.Template.Child()
-
+    
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         self.app = kwargs["application"]
-        self.set_title("Spanned Drive")
-        self.set_default_size(1280, 720)
-        self.set_icon_name("org.avjeferson.SpannedDrive")
+        self.quitable = (False, "Test") # Test Addition, defaulted to (True, None)
 
-        self.set_deletable(False)
+        
 
-        self.quitable = (False, "Test")
+
