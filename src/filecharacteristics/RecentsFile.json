@@ -9,16 +9,16 @@
       "def": "1.0",
       "required": true
     },
-    "softwareversion": {
+    "software_version": {
       "type": "str",
       "desc": "Version of the Software required to read the file",
       "def": "1.0",
       "required": true
     },
     "previous": {
-      "type": "tuple",
+      "type": "list",
       "desc": "Last Entered timestamp-value pair",
-      "def": "",
+      "def": [],
       "required": false
     },
     "entries": {

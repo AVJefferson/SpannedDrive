@@ -18,6 +18,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import sys
+import os
 import gi
 
 gi.require_version("Gtk", "4.0")
@@ -25,8 +26,9 @@ gi.require_version("Adw", "1")
 
 from gi.repository import Gtk, Gio, Adw
 from .utility import error_dialog
-from .window import SpanneddriveWindow
-from .gconstants import SOFTWARE_VERSION
+from .window import SpannedDriveWindow
+from .gconstants import SOFTWARE_VERSION, ROOTFOLDER, PARTITIONFOLDER, DRIVEFOLDER
+from . import readwrite as rw
 
 
 class SpanneddriveApplication(Adw.Application):
@@ -39,15 +41,58 @@ class SpanneddriveApplication(Adw.Application):
         self.create_action("about", self.on_about_action)
         self.create_action("preferences", self.on_preferences_action)
 
-    def do_activate(self):
-        """
-        Called when the application is activated.
-        We raise the application's main window, creating it if necessary.
-        """
+    def initappdatafolder(self):
+        if not os.path.isdir(ROOTFOLDER):
+            os.mkdir(ROOTFOLDER)
 
+        if not os.path.isdir(PARTITIONFOLDER):
+            os.mkdir(PARTITIONFOLDER)
+
+        if not os.path.isdir(DRIVEFOLDER):
+            os.mkdir(DRIVEFOLDER)
+
+        # If the file exists then load it, otherwise create it
+        self.partitions = rw.RecentsFile(loc=".spanneddrive/partitions/partitions.recents")
+        if os.path.isfile(".spanneddrive/partitions/partitions.recents"):
+            self.partitions.read()
+        else:
+            self.partitions.write()
+
+        self.drives = rw.RecentsFile(loc=".spanneddrive/drives/drives.recents")
+        if os.path.isfile(".spanneddrive/drives/drives.recents"):
+            self.drives.read()
+        else:
+            self.drives.write()
+
+        return self.partitions, self.drives
+
+    def initprimarydrive(self):
+        self.primarydrive = rw.DriveFile(loc=".spanneddrive/drives/primarydrive.drive")
+        if os.path.isfile(".spanneddrive/drives/primarydrive.drive"):
+            with open(".spanneddrive/drives/primarydrive.drive", "r") as f:
+                self.primarydrive = rw.Drive(loc=f.read())
+        else:
+            # Create a new drive, with a default name - "Primary Drive"
+            pass
+
+
+
+        
+
+    def do_startup(self):
+        Gtk.Application.do_startup(self)
+
+        self.initappdatafolder()
+        self.initprimarydrive()
+
+        # Background Tasks
+
+        return
+
+    def do_activate(self):
         win = self.props.active_window
         if not win:
-            win = SpanneddriveWindow(application=self)
+            win = SpannedDriveWindow(application=self)
         win.present()
         # win.set_keep_above(True)
 
@@ -106,15 +151,7 @@ class SpanneddriveApplication(Adw.Application):
         )
         preferences.present()
 
-
     def create_action(self, name, callback, shortcuts=None):
-        """Add an application action.
-        Args:
-            name: the name of the action
-            callback: the function to be called when the action is
-              activated
-            shortcuts: an optional list of accelerators
-        """
         action = Gio.SimpleAction.new(name, None)
         action.connect("activate", callback)
         self.add_action(action)

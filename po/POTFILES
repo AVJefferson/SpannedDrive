@@ -1,6 +1,6 @@
 data/org.avjeferson.SpannedDrive.desktop.in
 data/org.avjeferson.SpannedDrive.appdata.xml.in
 data/org.avjeferson.SpannedDrive.gschema.xml
-src/main.py
-src/window.py
-src/window.ui
+app/src/main.py
+app/src/window.py
+app/src/window.ui

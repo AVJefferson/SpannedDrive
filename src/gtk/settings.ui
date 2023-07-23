@@ -2,7 +2,7 @@
 <interface>
   <requires lib="gtk" version="4.0" />
   <requires lib="Adw" version="1.0" />
-  <template class="SpannedDriveWindow" parent="AdwApplicationWindow">
+  <template class="SettingsWindow" parent="AdwApplicationWindow">
     <property name="width-request">600</property>
     <property name="height-request">400</property>
     <property name="show-menubar">False</property>
@@ -60,11 +60,11 @@
                         <property name="hexpand">True</property>
                         <property name="vexpand">False</property>
                         <child>
-                          <object class="GtkListBox" id="listbox_partitions">
+                          <object class="GtkBox" id="box_partitions">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="valign">start</property>
-                            <!-- <property name="orientation">vertical</property> -->
+                            <property name="orientation">vertical</property>
                             <property name="hexpand">True</property>
                             <property name="vexpand">False</property>
                             <child>
@@ -346,12 +346,12 @@
                             <property name="can-focus">False</property>
                             <property name="hexpand">False</property>
                             <child>
-                              <object class="GtkListBox" id="listbox_drives">
+                              <object class="GtkBox" id="box_drives">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="valign">start</property>
-                                <!-- <property name="orientation">vertical</property> -->
-                                <!-- <property name="spacing">5</property> -->
+                                <property name="orientation">vertical</property>
+                                <property name="spacing">5</property>
                                 <child>
                                   <object class="GtkBox"
                                     id="box_drive_primary">
@@ -511,9 +511,6 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
-                        <signal name="clicked"
-                                  handler="on_button_new_drive_clicked"
-                                  swapped="no" />
                       </object>
                     </child>
                   </object>

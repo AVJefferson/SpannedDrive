@@ -1,0 +1,79 @@
+{
+  "version": "1.0",
+  "extension": ".drive",
+  "autosave": true,
+  "datatype": {
+    "file_version": {
+      "type": "str",
+      "desc": "Version of the drive file",
+      "def": "1.0",
+      "required": true
+    },
+    "software_version": {
+      "type": "str",
+      "desc": "Version of the software required to read the file",
+      "def": "1.0",
+      "required": true
+    },
+    "name": {
+      "type": "str",
+      "desc": "Name of the drive",
+      "def": "",
+      "mutable": true,
+      "required": true
+    },
+    "desc": {
+      "type": "str",
+      "desc": "Description of the drive",
+      "def": "",
+      "mutable": true,
+      "required": false
+    },
+    "loc": {
+      "type": "str",
+      "desc": "location of the drive token",
+      "def": "",
+      "mutable": true,
+      "required": false
+    },
+    "encrypt": {
+      "type": "str",
+      "desc": "Encryption algorithm used to encrypt the drive, None if not encrypted",
+      "def": "None",
+      "mutable": true,
+      "required": false
+    },
+    "hash": {
+      "type": "str",
+      "desc": "Hash algorithm used to hash the drive, None if not hashed",
+      "def": "None",
+      "mutable": true,
+      "required": false
+    },
+    "autosync": {
+      "type": "bool",
+      "desc": "If the drive is automatically synced with the cloud",
+      "def": false,
+      "mutable": true,
+      "required": false
+    },
+    "creationtime": {
+      "type": "float",
+      "desc": "Time of creation of the file",
+      "def": 0.0,
+      "required": true
+    },
+    "lastopened": {
+      "type": "float",
+      "desc": "Time of last opening of the file",
+      "def": 0.0,
+      "required": true
+    },
+    "lastmodified": {
+      "type": "float",
+      "desc": "Time of last modification of the file",
+      "def": 0.0,
+      "required": true
+    }
+  }
+}

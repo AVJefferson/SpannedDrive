@@ -1,4 +1,4 @@
-# gconstants.py
+# settings.py
 #
 # Copyright 2023 A V Jefferson
 #
@@ -17,10 +17,19 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-READ_WRITE_VERSION = "1.0"
-SOFTWARE_VERSION = ""
+from gi.repository import Adw
+from gi.repository import Gtk
 
-FILECHARACTERISTICSFOLDER = "/org/avjeferson/SpannedDrive/filecharacteristics/"
-ROOTFOLDER = ".spanneddrive/"
-PARTITIONFOLDER = ROOTFOLDER + "partitions/"
-DRIVEFOLDER = ROOTFOLDER + "drives/"
+from .utility import shorten, error_dialog, get_ui_path_from_filename
+
+
+@Gtk.Template(resource_path=get_ui_path_from_filename(__name__))
+class SpannedDriveWindow(Adw.ApplicationWindow):
+    __gtype_name__ = "SettingsWindow"
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.app = kwargs["application"]
+        self.quitable = (False, "Test")  # Test Addition, defaulted to (True, None)
+

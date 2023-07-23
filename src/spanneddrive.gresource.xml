@@ -4,6 +4,9 @@
     <file preprocess="xml-stripblanks">gtk/window.ui</file>
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
     <file>filecharacteristics/RecentsFile.json</file>
+    <file>filecharacteristics/PartitionFile.json</file>
+    <file>filecharacteristics/ConfigurationFile.json</file>
+    <file>filecharacteristics/DriveFile.json</file>
+    <file>filecharacteristics/TokenFile.json</file>
   </gresource>
 </gresources>
-

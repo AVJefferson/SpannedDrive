@@ -22,18 +22,83 @@ from gi.repository import Gtk
 
 from .utility import shorten, error_dialog, get_ui_path_from_filename
 
+import time
+import os
+
 
 @Gtk.Template(resource_path=get_ui_path_from_filename(__name__))
-class SpanneddriveWindow(Adw.ApplicationWindow):
-    __gtype_name__ = "SpanneddriveWindow"
+class SpannedDriveWindow(Adw.ApplicationWindow):
+    __gtype_name__ = "SpannedDriveWindow"
 
-    
+    search = Gtk.Template.Child("search")
+
+    listbox_partitions = Gtk.Template.Child("listbox_partitions")
+    button_new_partition = Gtk.Template.Child("button_new_partition")
+
+    box_path = Gtk.Template.Child("box_path")
+    label_current_partition = Gtk.Template.Child("label_current_partition")
+    flowbox_storage = Gtk.Template.Child("flowbox_storage")
+    label_partition_info = Gtk.Template.Child("label_partition_info")
+    progress_partition = Gtk.Template.Child("progress_partition")
+
+    listbox_drives = Gtk.Template.Child("listbox_drives")
+    box_drive_primary = Gtk.Template.Child("box_drive_primary")
+    button_new_drive = Gtk.Template.Child("button_new_drive")
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         self.app = kwargs["application"]
-        self.quitable = (False, "Test") # Test Addition, defaulted to (True, None)
+        self.quitable = (False, "Test")  # Test Addition, defaulted to (True, None)
 
-        
+        # Headerbar
+        self.search.connect("search-changed", self.on_search_changed)
+        self.search.connect("stop-search", self.on_stop_search)
 
+        # Partitions Pane
+        # self.partition_button[i].connect("clicked", self.on_button_partition_clicked)
+        self.button_new_partition.connect(
+            "clicked", self.on_button_new_partition_clicked
+        )
 
+        self.listbox_partitions.remove_all()
+        for r in self.app.partitions.get("entries"):
+            b = Gtk.Button(
+                os.path.basename(r[1][: -len(SbmFile.extension)]).replace("_", " ")
+            )
+
+            setattr(b, "loc", r[1])
+            setattr(b, "hash", r)
+
+            b.connect("clicked", self.on_button_partition_clicked)
+            b.show()
+
+        # Storage Pane
+        # self.label_current_partition.set_text("No Partition Selected")
+        # l = Gtk.Label()
+        # l.set_text("Get Started by Creating/Opening a Partition")
+        # l.set_halign(Gtk.Align.CENTER)
+        # l.set_valign(Gtk.Align.CENTER)
+        # l.set_hexpand(True)
+        # l.set_vexpand(True)
+        # self.flowbox_storage.append(l)
+        # self.label_partition_info.set_text("No Partition Selected")
+        # self.progress_partition.set_fraction(0.0)
+
+        # Drives Pane
+        self.button_new_drive.connect("clicked", self.on_button_new_drive_clicked)
+
+    def on_search_changed(self, search, text):
+        return
+
+    def on_stop_search(self, search):
+        return
+
+    def on_button_partition_clicked(self, button):
+        return
+
+    def on_button_new_partition_clicked(self, button):
+        return
+
+    def on_button_new_drive_clicked(self, button):
+        return

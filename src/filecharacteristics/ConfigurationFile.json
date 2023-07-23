@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "extension": ".conf",
+  "autosave": true,
+  "datatype": {
+    "file_version": {
+      "type": "str",
+      "desc": "Version of the configuration file",
+      "def": "1.0",
+      "required": true
+    },
+    "software_version": {
+      "type": "str",
+      "desc": "Version of the software required to read the file",
+      "def": "1.0",
+      "required": true
+    },
+    "name": {
+      "type": "str",
+      "desc": "Name of the configuration file",
+      "def": "",
+      "mutable": true,
+      "required": true
+    },
+    "desc": {
+      "type": "str",
+      "desc": "Description of the configuration file",
+      "def": "",
+      "mutable": true,
+      "required": false
+    },
+    "autosync": {
+      "type": "int",
+      "desc": "How the conf file is synced: Dont sync, Send and replace, send but dont replace, Receive Only, Keep Equal",
+      "def": 0,
+      "mutable": true,
+      "required": false
+    },
+    "remote": {
+      "type": "dict",
+      "desc": "Remote location to sync the conf file from and to",
+      "def": {
+        "addr": "https://sampleaddress.com",
+        "port": "2244",
+        "key": "SAMPLEKEY"
+      },
+      "mutable": true,
+      "required": false
+    },
+    "setting": {
+      "type": "dict",
+      "desc": "Dictionary of setting and value pairs",
+      "def": {},
+      "required": true,
+      "mutable": true
+    },
+    "creationtime": {
+      "type": "float",
+      "desc": "Time of creation of the file",
+      "def": 0.0,
+      "required": true
+    },
+    "lastopened": {
+      "type": "float",
+      "desc": "Time of last opening of the file",
+      "def": 0.0,
+      "required": true
+    },
+    "lastmodified": {
+      "type": "float",
+      "desc": "Time of last modification of the file",
+      "def": 0.0,
+      "required": true
+    }
+  }
+}

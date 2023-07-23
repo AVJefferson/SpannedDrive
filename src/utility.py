@@ -35,6 +35,13 @@ def error_dialog(parent, detail, message="Error"):
     dialog.show(parent=parent)
 
 
+def isEmpty(list_object):
+    if list_object:
+        return False
+    else:
+        return True
+
+
 def is_allowed_text(valid, text, emptyallowed=False):
     if not emptyallowed and text == "":
         return False

@@ -28,10 +28,12 @@ configure_file(
 
 spanneddrive_sources = [
   '__init__.py',
-  'main.py',
-  'window.py',
   'utility.py',
   'gconstants.py',
+  'readwrite.py',
+  'main.py',
+  'window.py',
+  'settings.py',
 ]
 
 install_data(spanneddrive_sources, install_dir: moduledir)
